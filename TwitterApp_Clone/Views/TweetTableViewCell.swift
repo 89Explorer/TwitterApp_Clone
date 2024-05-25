@@ -20,14 +20,12 @@ protocol TweetTableViewCellDelegate: AnyObject {
 
 class TweetTableViewCell: UITableViewCell {
     
-    static let identifier = "TweetTableViewCell"
-    
-    private let actionSpacing: CGFloat = 60
-    
-    
     // 대리자 선언 - 2
     weak var delegate: TweetTableViewCellDelegate?
     
+    static let identifier = "TweetTableViewCell"
+    
+    private let actionSpacing: CGFloat = 60
     
     private let avatarImageView: UIImageView = {
         let imageView = UIImageView()

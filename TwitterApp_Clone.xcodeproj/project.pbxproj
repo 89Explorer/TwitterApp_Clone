@@ -19,6 +19,8 @@
 		AD11F86E2C005E3A008A1794 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F86D2C005E3A008A1794 /* NotificationViewController.swift */; };
 		AD11F8702C005E52008A1794 /* DirectMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F86F2C005E52008A1794 /* DirectMessageViewController.swift */; };
 		AD11F8732C00603F008A1794 /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F8722C00603F008A1794 /* TweetTableViewCell.swift */; };
+		AD11F8782C022528008A1794 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F8772C022528008A1794 /* ProfileViewController.swift */; };
+		AD11F87A2C022757008A1794 /* ProfileTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F8792C022757008A1794 /* ProfileTableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		AD11F86D2C005E3A008A1794 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		AD11F86F2C005E52008A1794 /* DirectMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectMessageViewController.swift; sourceTree = "<group>"; };
 		AD11F8722C00603F008A1794 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
+		AD11F8772C022528008A1794 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AD11F8792C022757008A1794 /* ProfileTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,11 +88,8 @@
 		AD11F8682C005DE5008A1794 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AD11F8552C005D84008A1794 /* MainTabBarViewController.swift */,
-				AD11F8692C005DFD008A1794 /* HomeViewController.swift */,
-				AD11F86B2C005E2A008A1794 /* SearchViewController.swift */,
-				AD11F86D2C005E3A008A1794 /* NotificationViewController.swift */,
-				AD11F86F2C005E52008A1794 /* DirectMessageViewController.swift */,
+				AD11F8762C022515008A1794 /* General */,
+				AD11F8752C02250E008A1794 /* Core */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -97,8 +98,29 @@
 			isa = PBXGroup;
 			children = (
 				AD11F8722C00603F008A1794 /* TweetTableViewCell.swift */,
+				AD11F8792C022757008A1794 /* ProfileTableViewHeader.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		AD11F8752C02250E008A1794 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AD11F8552C005D84008A1794 /* MainTabBarViewController.swift */,
+				AD11F8692C005DFD008A1794 /* HomeViewController.swift */,
+				AD11F86B2C005E2A008A1794 /* SearchViewController.swift */,
+				AD11F86D2C005E3A008A1794 /* NotificationViewController.swift */,
+				AD11F86F2C005E52008A1794 /* DirectMessageViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		AD11F8762C022515008A1794 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				AD11F8772C022528008A1794 /* ProfileViewController.swift */,
+			);
+			path = General;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +196,7 @@
 			files = (
 				AD11F86C2C005E2A008A1794 /* SearchViewController.swift in Sources */,
 				AD11F8702C005E52008A1794 /* DirectMessageViewController.swift in Sources */,
+				AD11F8782C022528008A1794 /* ProfileViewController.swift in Sources */,
 				AD11F8732C00603F008A1794 /* TweetTableViewCell.swift in Sources */,
 				AD11F86A2C005DFD008A1794 /* HomeViewController.swift in Sources */,
 				AD11F8562C005D84008A1794 /* MainTabBarViewController.swift in Sources */,
@@ -181,6 +204,7 @@
 				AD11F85C2C005D84008A1794 /* TwitterApp_Clone.xcdatamodeld in Sources */,
 				AD11F8522C005D84008A1794 /* AppDelegate.swift in Sources */,
 				AD11F8542C005D84008A1794 /* SceneDelegate.swift in Sources */,
+				AD11F87A2C022757008A1794 /* ProfileTableViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
