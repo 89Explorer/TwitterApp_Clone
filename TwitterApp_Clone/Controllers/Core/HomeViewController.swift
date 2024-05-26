@@ -21,6 +21,8 @@ class HomeViewController: UIViewController {
         navigationItem.titleView = middleView
         
         
+        
+        
         // profile
         let profileImage = UIImage(systemName: "person")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(didTapProfile))
@@ -46,7 +48,6 @@ class HomeViewController: UIViewController {
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
         
-        
         configureNavigationBar()
     }
     
@@ -54,6 +55,12 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         timelineTableView.frame = view.bounds
+    }
+    
+    // 프로필뷰에서 네비게이션 숨기기에 따라 홈 -> 프로필 -> 홈으로 돌아오는 과정에서 홈에도 네비게이션이 숨기기로 나오는 것을 고침
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
 }
 
