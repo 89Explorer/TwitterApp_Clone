@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController {
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
+        
     }()
 
     override func viewDidLoad() {
@@ -45,8 +46,7 @@ class ProfileViewController: UIViewController {
         // 네비게이션 부분 숨기기 -> HomeView에는 네비게이션 부분이 있다가 -> 프로필에 가면 없어졌다가 -> 다시 돌아오면 HomeView에도 없어져있다. 
         navigationController?.navigationBar.isHidden = true
         
-        
-        
+
         configureConstraints()
         
         
@@ -92,13 +92,13 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPosition = scrollView.contentOffset.y
         
-        if yPosition > 150 && isStausBarHidden {
+        if yPosition > 100 && isStausBarHidden {
             isStausBarHidden = false
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
                 self?.statusBar.layer.opacity = 1
             } completion: { _ in }
         } else if yPosition < 0 && !isStausBarHidden {
-            isStausBarHidden = false
+            isStausBarHidden = true
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
                 self?.statusBar.layer.opacity = 0
             } completion: { _ in }
