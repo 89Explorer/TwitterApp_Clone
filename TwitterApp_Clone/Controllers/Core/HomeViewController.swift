@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController {
     
@@ -49,18 +50,45 @@ class HomeViewController: UIViewController {
         timelineTableView.dataSource = self
         
         configureNavigationBar()
+        
+        
+        // firebase 로그인 여부에 따른 온보딩화면 표시
+        if Auth.auth().currentUser == nil {
+            
+            let onboardingVC = UINavigationController(rootViewController: OnboardingViewController())
+            // let onboardingVC = OnboardingViewController()
+            onboardingVC.modalPresentationStyle = .fullScreen
+
+            // present(onboardingVC, animated: true)
+            present(onboardingVC, animated: true)
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         timelineTableView.frame = view.bounds
+    
     }
     
     // 프로필뷰에서 네비게이션 숨기기에 따라 홈 -> 프로필 -> 홈으로 돌아오는 과정에서 홈에도 네비게이션이 숨기기로 나오는 것을 고침
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        
+        
+        // firebase 로그인 여부에 따른 온보딩화면 표시
+        if Auth.auth().currentUser == nil {
+            
+            // let onboardingVC = UINavigationController(rootViewController: OnboardingViewController())
+            let onboardingVC = OnboardingViewController()
+            onboardingVC.modalPresentationStyle = .fullScreen
+
+            // present(onboardingVC, animated: true)
+            navigationController?.pushViewController(onboardingVC, animated: true)
+        }
+        
+
     }
 }
 

@@ -285,7 +285,7 @@ class ProfileTableViewHeader: UIView {
         
         let userBioLabelConstraints = [
             userBioLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
-            userBioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            // userBioLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             userBioLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 5)
         ]
         
@@ -326,6 +326,8 @@ class ProfileTableViewHeader: UIView {
             sectionStack.heightAnchor.constraint(equalToConstant: 35)
         ]
         
+        
+        // indicator 지시선 제약조건
         let indicatorConstraints = [
             leadingAnchors[0],
             trailingAnchors[0],

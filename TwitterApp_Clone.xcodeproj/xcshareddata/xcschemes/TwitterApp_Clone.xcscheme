@@ -52,6 +52,10 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
+            argument = "CG_CONTEXT_SHOW_BACKTRAC = YES"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
             argument = "IDEPreferLogStreaming=YES"
             isEnabled = "YES">
          </CommandLineArgument>
