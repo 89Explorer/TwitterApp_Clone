@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import Combine
 
 class RegisterViewController: UIViewController {
     
+    // ViewModel
+    private var viewModel = RegisterViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     private let registerTitleLabel: UILabel = {
         let label = UILabel()
@@ -22,12 +26,13 @@ class RegisterViewController: UIViewController {
     private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.autocapitalizationType = .none
         textField.keyboardType = .emailAddress
         textField.attributedPlaceholder = NSAttributedString(
             string: "Email",
             attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray]
             )
-        textField.autocapitalizationType = .none
+        
         return textField
     }()
     
@@ -57,8 +62,36 @@ class RegisterViewController: UIViewController {
         button.backgroundColor = .systemCyan
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 25
+        button.isEnabled = false
         return button
     }()
+    
+    
+    
+    @objc private func didChangeEmailTextField() {
+        viewModel.email = emailTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    @objc private func didChangePasswordTextField() {
+        viewModel.password = passwordTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    // email, password 설정 함수
+    private func bindViews() {
+        emailTextField.addTarget(self, action: #selector(didChangeEmailTextField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePasswordTextField), for: .editingChanged)
+        viewModel.$isRegisterationFormValid.sink { [weak self] validationState in
+            self?.registerButton.isEnabled = validationState
+        }
+        .store(in: &subscriptions)
+        
+        viewModel.$user.sink { [weak self] user in
+            print(user)
+        }
+        .store(in: &subscriptions)
+    }
     
     
     override func viewDidLoad() {
@@ -72,8 +105,21 @@ class RegisterViewController: UIViewController {
         
         
         configureConstraints()
+        
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
+        
+        bindViews()
     }
     
+    @objc private func didTapRegister() {
+        viewModel.createUser()
+    }
+    
+    // textField 작성이 끝나고 빈 곳이나 enter 키를 누르면 키보드 내려간다. 
+    @objc private func didTapToDismiss() {
+        view.endEditing(true)
+    }
     
     private func configureConstraints() {
         

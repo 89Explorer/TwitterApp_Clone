@@ -22,8 +22,6 @@ class HomeViewController: UIViewController {
         navigationItem.titleView = middleView
         
         
-        
-        
         // profile
         let profileImage = UIImage(systemName: "person")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(didTapProfile))
@@ -51,17 +49,6 @@ class HomeViewController: UIViewController {
         
         configureNavigationBar()
         
-        
-        // firebase 로그인 여부에 따른 온보딩화면 표시
-        if Auth.auth().currentUser == nil {
-            
-            let onboardingVC = UINavigationController(rootViewController: OnboardingViewController())
-            // let onboardingVC = OnboardingViewController()
-            onboardingVC.modalPresentationStyle = .fullScreen
-
-            // present(onboardingVC, animated: true)
-            present(onboardingVC, animated: true)
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,15 +67,15 @@ class HomeViewController: UIViewController {
         // firebase 로그인 여부에 따른 온보딩화면 표시
         if Auth.auth().currentUser == nil {
             
-            // let onboardingVC = UINavigationController(rootViewController: OnboardingViewController())
-            let onboardingVC = OnboardingViewController()
-            onboardingVC.modalPresentationStyle = .fullScreen
+            let onboardingVC = UINavigationController(rootViewController: OnboardingViewController())
+            // let onboardingVC = OnboardingViewController()
+            // onboardingVC.modalPresentationStyle = .fullScreen
 
-            // present(onboardingVC, animated: true)
-            navigationController?.pushViewController(onboardingVC, animated: true)
+            present(onboardingVC, animated: true)
+            // navigationController?.pushViewController(onboardingVC, animated: true)
+
+            
         }
-        
-
     }
 }
 
