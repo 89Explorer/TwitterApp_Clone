@@ -32,9 +32,10 @@
 		AD11F88D2C0589AE008A1794 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = AD11F88C2C0589AE008A1794 /* FirebaseStorageCombine-Community */; };
 		AD11F8902C058AC5008A1794 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD11F88F2C058AC5008A1794 /* OnboardingViewController.swift */; };
 		AD8099EE2C0599E500ACA16F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099ED2C0599E500ACA16F /* RegisterViewController.swift */; };
-		AD8099F12C06DF8B00ACA16F /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099F02C06DF8B00ACA16F /* RegisterViewViewModel.swift */; };
+		AD8099F12C06DF8B00ACA16F /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099F02C06DF8B00ACA16F /* AuthenticationViewViewModel.swift */; };
 		AD8099F42C06E4C800ACA16F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099F32C06E4C800ACA16F /* AuthManager.swift */; };
 		AD8099F62C06E6F100ACA16F /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = AD8099F52C06E6F100ACA16F /* FirebaseAuthCombine-Community */; };
+		AD8099F82C10599400ACA16F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099F72C10599400ACA16F /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,8 +58,9 @@
 		AD11F87B2C0588B4008A1794 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AD11F88F2C058AC5008A1794 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AD8099ED2C0599E500ACA16F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		AD8099F02C06DF8B00ACA16F /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		AD8099F02C06DF8B00ACA16F /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
 		AD8099F32C06E4C800ACA16F /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		AD8099F72C10599400ACA16F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			children = (
 				AD11F88F2C058AC5008A1794 /* OnboardingViewController.swift */,
 				AD8099ED2C0599E500ACA16F /* RegisterViewController.swift */,
+				AD8099F72C10599400ACA16F /* LoginViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -167,7 +170,7 @@
 		AD8099EF2C06DF6400ACA16F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AD8099F02C06DF8B00ACA16F /* RegisterViewViewModel.swift */,
+				AD8099F02C06DF8B00ACA16F /* AuthenticationViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -273,11 +276,12 @@
 				AD8099F42C06E4C800ACA16F /* AuthManager.swift in Sources */,
 				AD11F86A2C005DFD008A1794 /* HomeViewController.swift in Sources */,
 				AD11F8562C005D84008A1794 /* MainTabBarViewController.swift in Sources */,
-				AD8099F12C06DF8B00ACA16F /* RegisterViewViewModel.swift in Sources */,
+				AD8099F12C06DF8B00ACA16F /* AuthenticationViewViewModel.swift in Sources */,
 				AD11F86E2C005E3A008A1794 /* NotificationViewController.swift in Sources */,
 				AD11F8902C058AC5008A1794 /* OnboardingViewController.swift in Sources */,
 				AD11F85C2C005D84008A1794 /* TwitterApp_Clone.xcdatamodeld in Sources */,
 				AD11F8522C005D84008A1794 /* AppDelegate.swift in Sources */,
+				AD8099F82C10599400ACA16F /* LoginViewController.swift in Sources */,
 				AD8099EE2C0599E500ACA16F /* RegisterViewController.swift in Sources */,
 				AD11F8542C005D84008A1794 /* SceneDelegate.swift in Sources */,
 				AD11F87A2C022757008A1794 /* ProfileTableViewHeader.swift in Sources */,

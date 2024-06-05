@@ -68,7 +68,13 @@ class OnboardingViewController: UIViewController {
         configureConstraints()
         
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
         
+    }
+    
+    @objc private func didTapLogin() {
+        let LoginVC = LoginViewController()
+        navigationController?.pushViewController(LoginVC, animated: true)
     }
     
     @objc func didTapCreateAccount() {
