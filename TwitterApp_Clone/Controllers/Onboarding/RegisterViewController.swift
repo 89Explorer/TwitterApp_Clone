@@ -94,7 +94,6 @@ class RegisterViewController: UIViewController {
             guard let onBoardingVC = self?.navigationController?.viewControllers.first as? OnboardingViewController else { return }
             onBoardingVC.dismiss(animated: true)
             
-            
         }
         .store(in: &subscriptions)
         

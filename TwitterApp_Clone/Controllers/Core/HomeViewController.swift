@@ -7,8 +7,13 @@
 
 import UIKit
 import FirebaseAuth
+import Combine
 
 class HomeViewController: UIViewController {
+    
+    private var viewModel = HomeViewViewModel()
+    
+    private var subscriptions: Set<AnyCancellable> = []
     
     
     private func configureNavigationBar() {
@@ -51,6 +56,8 @@ class HomeViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSignOut))
         
+        bindViews()
+        
     }
     
     @objc private func didTapSignOut() {
@@ -80,7 +87,25 @@ class HomeViewController: UIViewController {
         
         // 로그인 여부 확인
         handleAuthentication()
+        
+        viewModel.retreiveUser()
     }
+    
+    func completeUserOnboarding() {
+        let profileDataFormVC = ProfileDataFormViewController()
+        present(profileDataFormVC, animated: true)
+    }
+    
+    func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+            if !user.isUserOnboarded {
+                self?.completeUserOnboarding()
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
