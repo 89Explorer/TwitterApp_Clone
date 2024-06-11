@@ -16,6 +16,25 @@ class HomeViewController: UIViewController {
     private var subscriptions: Set<AnyCancellable> = []
     
     
+    private lazy var composeTweetButton: UIButton = {
+        let button = UIButton(type: .system, primaryAction: UIAction { _ in
+            self.navigationToTweetCompose()
+        })
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .systemMint
+        button.tintColor = .label
+        
+        let plussign = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .bold))
+        button.setImage(plussign, for: .normal)
+        
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        return button
+        
+    }()
+    
+    
     private func configureNavigationBar() {
         let size: CGFloat = 36
         let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
@@ -38,6 +57,14 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(profileVC, animated: true)
     }
     
+    private func navigationToTweetCompose() {
+        
+        let TweetComposeVC = UINavigationController(rootViewController: TweetComposeViewController())
+        TweetComposeVC.modalPresentationStyle = .fullScreen
+        present(TweetComposeVC, animated: true)
+    }
+    
+    
     private let timelineTableView: UITableView = {
         let tableView = UITableView()
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifier)
@@ -48,6 +75,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(timelineTableView)
+        view.addSubview(composeTweetButton)
         
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
@@ -57,6 +85,9 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSignOut))
         
         bindViews()
+        
+        configureConstraints()
+        
         
     }
     
@@ -104,6 +135,20 @@ class HomeViewController: UIViewController {
             }
         }
         .store(in: &subscriptions)
+    }
+    
+    
+    
+    private func configureConstraints() {
+        
+        let composeTweetButtonConstraints = [
+            composeTweetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            composeTweetButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -120),
+            composeTweetButton.widthAnchor.constraint(equalToConstant: 60),
+            composeTweetButton.heightAnchor.constraint(equalToConstant: 60)
+        ]
+        
+        NSLayoutConstraint.activate(composeTweetButtonConstraints)
     }
     
 }

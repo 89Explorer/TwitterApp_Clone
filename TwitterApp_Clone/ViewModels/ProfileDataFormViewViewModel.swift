@@ -68,8 +68,6 @@ final class ProfileDataFormViewViewModel: ObservableObject {
                 self?.avatarPath = url.absoluteString
             }
             .store(in: &subscriptions)
-        
-        
     }
     
     

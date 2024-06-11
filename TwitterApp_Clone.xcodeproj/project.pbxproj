@@ -45,6 +45,9 @@
 		AD809A072C18DE4400ACA16F /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A062C18DE4400ACA16F /* ProfileViewViewModel.swift */; };
 		AD809A0A2C18E3DA00ACA16F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = AD809A092C18E3DA00ACA16F /* SDWebImage */; };
 		AD809A0C2C18E3DA00ACA16F /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AD809A0B2C18E3DA00ACA16F /* SDWebImageMapKit */; };
+		AD809A0E2C18FC7C00ACA16F /* TweetComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */; };
+		AD809A102C19027500ACA16F /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A0F2C19027500ACA16F /* Tweet.swift */; };
+		AD809A122C1902C800ACA16F /* TweetComposeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,9 @@
 		AD809A022C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewViewModel.swift; sourceTree = "<group>"; };
 		AD809A042C18216B00ACA16F /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		AD809A062C18DE4400ACA16F /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
+		AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComposeViewController.swift; sourceTree = "<group>"; };
+		AD809A0F2C19027500ACA16F /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComposeViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +179,7 @@
 			children = (
 				AD11F8772C022528008A1794 /* ProfileViewController.swift */,
 				AD809A002C12E9A500ACA16F /* ProfileDataFormViewController.swift */,
+				AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -194,6 +201,7 @@
 				AD8099FE2C12E77900ACA16F /* HomeViewViewModel.swift */,
 				AD809A022C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift */,
 				AD809A062C18DE4400ACA16F /* ProfileViewViewModel.swift */,
+				AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				AD8099FA2C12D74300ACA16F /* TwitterUser.swift */,
+				AD809A0F2C19027500ACA16F /* Tweet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 			files = (
 				AD11F86C2C005E2A008A1794 /* SearchViewController.swift in Sources */,
 				AD11F8702C005E52008A1794 /* DirectMessageViewController.swift in Sources */,
+				AD809A0E2C18FC7C00ACA16F /* TweetComposeViewController.swift in Sources */,
 				AD11F8782C022528008A1794 /* ProfileViewController.swift in Sources */,
 				AD11F8732C00603F008A1794 /* TweetTableViewCell.swift in Sources */,
 				AD8099F42C06E4C800ACA16F /* AuthManager.swift in Sources */,
@@ -315,8 +325,10 @@
 				AD11F8562C005D84008A1794 /* MainTabBarViewController.swift in Sources */,
 				AD809A072C18DE4400ACA16F /* ProfileViewViewModel.swift in Sources */,
 				AD8099FB2C12D74300ACA16F /* TwitterUser.swift in Sources */,
+				AD809A102C19027500ACA16F /* Tweet.swift in Sources */,
 				AD8099FD2C12D8C900ACA16F /* DatabaseManager.swift in Sources */,
 				AD8099F12C06DF8B00ACA16F /* AuthenticationViewViewModel.swift in Sources */,
+				AD809A122C1902C800ACA16F /* TweetComposeViewViewModel.swift in Sources */,
 				AD11F86E2C005E3A008A1794 /* NotificationViewController.swift in Sources */,
 				AD11F8902C058AC5008A1794 /* OnboardingViewController.swift in Sources */,
 				AD809A052C18216B00ACA16F /* StorageManager.swift in Sources */,

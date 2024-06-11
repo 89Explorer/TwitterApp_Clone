@@ -40,11 +40,11 @@ class DatabaseManager {
             .eraseToAnyPublisher()
     }
     
-//    func collectionTweets(dispatch tweet: Tweet) -> AnyPublisher<Bool, Error> {
-//        db.collection(tweetsPath).document(tweet.id).setData(from: tweet)
-//            .map { _ in true }
-//            .eraseToAnyPublisher()
-//    }
+    func collectionTweets(dispatch tweet: Tweet) -> AnyPublisher<Bool, Error> {
+        db.collection(tweetsPath).document(tweet.id).setData(from: tweet)
+            .map { _ in true }
+            .eraseToAnyPublisher()
+    }
     
 
     func collectionUsers(search query: String) -> AnyPublisher<[TwitterUser], Error> {
