@@ -15,6 +15,7 @@ import FirebaseStorage
 final class ProfileDataFormViewViewModel: ObservableObject {
     
     private var subscriptions: Set<AnyCancellable> = []
+    
     @Published var displayName: String?
     @Published var username: String?
     @Published var bio: String?
@@ -24,7 +25,11 @@ final class ProfileDataFormViewViewModel: ObservableObject {
     @Published var error: String = ""
     @Published var isOnboardingFinished: Bool = false
     
+    @Published var url: URL?
     
+    
+    
+    // user 정보를 적는데 필요한 간단한 규칙 정도 
     func validateUserProfileForm() {
         guard let displayName = displayName,
               displayName.count > 2,
@@ -40,34 +45,29 @@ final class ProfileDataFormViewViewModel: ObservableObject {
     }
     
     
-//    func uploadAvatar() {
-//        let randomID = UUID().uuidString
-//        guard let imageData = imageData?.jpegData(compressionQuality: 0.5) else { return }
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "image/jpeg"
-//        
-//        StorageManager.shared.uploadProfilePhoto(with: randomID, image: imageData, metaData: metaData)
-//            .flatMap({ metaData in
-//                StorageManager.shared.getDownloadURL(for: metaData.path)
-//            })
-//            .sink { [weak self] completion in
-//                
-//                switch completion {
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                    self?.error = error.localizedDescription
-//                
-//                case .finished:
-//                    self?.updateUserData()
-//                }
-//                
-//            } receiveValue: { [weak self] url in
-//                self?.avatarPath = url.absoluteString
-//            }
-//            .store(in: &subscriptions)
-//        
-//        
-//    }
+    func uploadAvatar() {
+        let randomID = UUID().uuidString
+        guard let imageData = imageData?.jpegData(compressionQuality: 0.5) else { return }
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/jpeg"
+        
+        StorageManager.shared.uploadProfilePhoto(with: randomID, image: imageData, metaData: metaData)
+            .flatMap({ metaData in
+                StorageManager.shared.getDownloadURL(for: metaData.path)
+            })
+            .sink { [weak self] completion in
+                
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
+                
+            } receiveValue: { [weak self] url in
+                self?.url = url
+            }
+            .store(in: &subscriptions)
+        
+        
+    }
 //    
 //    
 //    private func updateUserData() {

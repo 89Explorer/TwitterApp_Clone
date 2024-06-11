@@ -4,12 +4,15 @@
 //
 //  Created by 권정근 on 6/7/24.
 //
-
 import UIKit
 import PhotosUI
-
+import Combine
 
 class ProfileDataFormViewController: UIViewController {
+
+
+    private let viewModel = ProfileDataFormViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -92,12 +95,12 @@ class ProfileDataFormViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Submit", for: .normal)
-        button.tintColor = .label
-        
+        button.tintColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        // button.backgroundColor = .twitterBlueColor
+        button.backgroundColor = .systemMint
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 25
-        button.backgroundColor = .systemMint
         button.isEnabled = false
         return button
     }()
@@ -105,7 +108,6 @@ class ProfileDataFormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
         view.addSubview(scrollView)
         scrollView.addSubview(hintLabel)
         scrollView.addSubview(avatarPlaceholderImageView)
@@ -113,16 +115,49 @@ class ProfileDataFormViewController: UIViewController {
         scrollView.addSubview(usernameTextField)
         scrollView.addSubview(bioTextView)
         scrollView.addSubview(submitButton)
-        
         isModalInPresentation = true
         displayNameTextField.delegate = self
         usernameTextField.delegate = self
         bioTextView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         configureConstraints()
+        submitButton.addTarget(self, action: #selector(didTapSubmit), for: .touchUpInside)
         avatarPlaceholderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+        bindViews()
     }
     
+    @objc private func didTapSubmit() {
+        viewModel.uploadAvatar()
+    }
+    
+    @objc private func didUpdateDisplayName() {
+        viewModel.displayName = displayNameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
+    @objc private func didUpdateUsername() {
+        viewModel.username = usernameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
+    private func bindViews() {
+        displayNameTextField.addTarget(self, action: #selector(didUpdateDisplayName), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(didUpdateUsername), for: .editingChanged)
+        viewModel.$isFormValid.sink { [weak self] buttonState in
+            self?.submitButton.isEnabled = buttonState
+        }
+        .store(in: &subscriptions)
+        
+        
+        viewModel.$isOnboardingFinished.sink { [weak self] success in
+            if success {
+                self?.dismiss(animated: true)
+            }
+        }
+        .store(in: &subscriptions)
+    }
+
+
     
     @objc private func didTapToUpload() {
         var configuration = PHPickerConfiguration()
@@ -221,6 +256,11 @@ extension ProfileDataFormViewController: UITextViewDelegate, UITextFieldDelegate
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.bio = textView.text
+        viewModel.validateUserProfileForm()
+    }
+
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.origin.y - 100), animated: true)
@@ -241,6 +281,8 @@ extension ProfileDataFormViewController: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self?.avatarPlaceholderImageView.image = image
+                        self?.viewModel.imageData = image
+                        self?.viewModel.validateUserProfileForm()
                     }
                 }
             }

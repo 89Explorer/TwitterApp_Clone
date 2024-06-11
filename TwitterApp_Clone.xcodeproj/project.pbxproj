@@ -41,6 +41,7 @@
 		AD8099FF2C12E77900ACA16F /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8099FE2C12E77900ACA16F /* HomeViewViewModel.swift */; };
 		AD809A012C12E9A500ACA16F /* ProfileDataFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A002C12E9A500ACA16F /* ProfileDataFormViewController.swift */; };
 		AD809A032C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A022C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift */; };
+		AD809A052C18216B00ACA16F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A042C18216B00ACA16F /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		AD8099FE2C12E77900ACA16F /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
 		AD809A002C12E9A500ACA16F /* ProfileDataFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewController.swift; sourceTree = "<group>"; };
 		AD809A022C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewViewModel.swift; sourceTree = "<group>"; };
+		AD809A042C18216B00ACA16F /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			children = (
 				AD8099F32C06E4C800ACA16F /* AuthManager.swift */,
 				AD8099FC2C12D8C900ACA16F /* DatabaseManager.swift */,
+				AD809A042C18216B00ACA16F /* StorageManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				AD8099F12C06DF8B00ACA16F /* AuthenticationViewViewModel.swift in Sources */,
 				AD11F86E2C005E3A008A1794 /* NotificationViewController.swift in Sources */,
 				AD11F8902C058AC5008A1794 /* OnboardingViewController.swift in Sources */,
+				AD809A052C18216B00ACA16F /* StorageManager.swift in Sources */,
 				AD11F85C2C005D84008A1794 /* TwitterApp_Clone.xcdatamodeld in Sources */,
 				AD11F8522C005D84008A1794 /* AppDelegate.swift in Sources */,
 				AD8099F82C10599400ACA16F /* LoginViewController.swift in Sources */,
