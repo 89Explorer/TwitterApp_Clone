@@ -89,7 +89,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let followersCountLabel: UILabel = {
+    var followersCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "1M"
@@ -107,7 +107,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let followingCountLabel: UILabel = {
+    var followingCountLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "314"
@@ -117,7 +117,7 @@ class ProfileTableViewHeader: UIView {
     }()
     
     
-    private let joinDateLabel: UILabel = {
+    var joinDateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Joined May 2024"
@@ -134,7 +134,7 @@ class ProfileTableViewHeader: UIView {
         return imageView
     }()
     
-    private let userBioLabel: UILabel = {
+    var userBioLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 3
@@ -144,7 +144,7 @@ class ProfileTableViewHeader: UIView {
     }()
         
     
-    private let userNameLabel: UILabel = {
+   var userNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "@Explorer"
@@ -153,7 +153,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let displayNameLabel: UILabel = {
+    var displayNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Explorer"
@@ -162,14 +162,14 @@ class ProfileTableViewHeader: UIView {
     }()
     
     
-    private let profileAvatarImageView: UIImageView = {
+    var profileAvatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 40
         imageView.layer.masksToBounds = true
         imageView.image = UIImage(named: "profile")
-        imageView.backgroundColor = .systemYellow
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Combine
+import SDWebImage
 
 class ProfileViewController: UIViewController {
     
     private var isStausBarHidden: Bool = true
+    private var viewModel = ProfileViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
     
     // 상태표시줄 설정
     private let statusBar: UIView = {
@@ -19,6 +23,9 @@ class ProfileViewController: UIViewController {
         view.layer.opacity = 0
         return view
     }()
+    
+    private lazy var headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
+    
     
     private let profileTableView: UITableView = {
         
@@ -49,10 +56,32 @@ class ProfileViewController: UIViewController {
 
         configureConstraints()
         
-        
-        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
         profileTableView.tableHeaderView = headerView
+        
+        bindViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.retreiveUser()
+    }
+    
+    
+    private func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else { return }
+            
+            self?.headerView.displayNameLabel.text = user.displayName
+            self?.headerView.userNameLabel.text = "@\(user.username)"
+            self?.headerView.followersCountLabel.text = "\(user.followersCount)"
+            self?.headerView.followingCountLabel.text = "\(user.followingCount)"
+            self?.headerView.userBioLabel.text = user.bio
+            self?.headerView.profileAvatarImageView.sd_setImage(with: URL(string: user.avatarPath))
+        }
+        .store(in: &subscriptions)
+    }
+    
     
     
     private func configureConstraints() {
