@@ -127,6 +127,13 @@ class TweetTableViewCell: UITableViewCell {
         
     }
     
+    func configureTweet(with displayName: String, username: String, tweetTextContent: String, avatarPath: String) {
+        displayNameLabel.text = displayName
+        userNameLabel.text = "@\(username)"
+        tweetTextContentLabel.text = tweetTextContent
+        avatarImageView.sd_setImage(with: URL(string: avatarPath))
+    }
+    
     
     private func configureConstraints() {
         
