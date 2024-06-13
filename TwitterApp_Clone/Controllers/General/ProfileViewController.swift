@@ -9,82 +9,80 @@ import UIKit
 import Combine
 import SDWebImage
 
+
 class ProfileViewController: UIViewController {
     
-    private var isStausBarHidden: Bool = true
-    private var viewModel = ProfileViewViewModel()
-    private var subscriptions: Set<AnyCancellable> = []
-    
-    // 상태표시줄 설정
+    private var isStatusBarHidden: Bool = true
+    private var viewModel: ProfileViewViewModel
+
+    init(viewModel: ProfileViewViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
     private let statusBar: UIView = {
         let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .systemBackground
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.opacity = 0
         return view
     }()
     
-    private lazy var headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
-    
-    
+    private var subscriptions: Set<AnyCancellable> = []
+    private lazy var headerView = ProfileTableViewHeader(
+        frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 390)
+    )
+
     private let profileTableView: UITableView = {
-        
         let tableView = UITableView()
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
-        
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
         navigationItem.title = "Profile"
-        
         view.addSubview(profileTableView)
         view.addSubview(statusBar)
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        
-        profileTableView.contentInsetAdjustmentBehavior = .never
-        
-        // 네비게이션 부분 숨기기 -> HomeView에는 네비게이션 부분이 있다가 -> 프로필에 가면 없어졌다가 -> 다시 돌아오면 HomeView에도 없어져있다. 
-        navigationController?.navigationBar.isHidden = true
-        
-
-        configureConstraints()
-        
         profileTableView.tableHeaderView = headerView
-        
+        profileTableView.contentInsetAdjustmentBehavior = .never
+        navigationController?.navigationBar.isHidden = true
+        configureConstraints()
         bindViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         viewModel.retreiveUser()
     }
-    
-    
+        
     private func bindViews() {
+
+        viewModel.$tweets.sink { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.profileTableView.reloadData()
+            }
+        }
+        .store(in: &subscriptions)
+
         viewModel.$user.sink { [weak self] user in
             guard let user = user else { return }
-            
             self?.headerView.displayNameLabel.text = user.displayName
-            self?.headerView.userNameLabel.text = "@\(user.username)"
+            //self?.headerView.usernameLabel.text = "@\(user.username)"
             self?.headerView.followersCountLabel.text = "\(user.followersCount)"
             self?.headerView.followingCountLabel.text = "\(user.followingCount)"
             self?.headerView.userBioLabel.text = user.bio
             self?.headerView.profileAvatarImageView.sd_setImage(with: URL(string: user.avatarPath))
+            //self?.headerView.joinedDateLabel.text = "Joined \(self?.viewModel.getFormattedDate(with: user.createdOn) ?? "")"
             
-            self?.headerView.joinDateLabel.text = "Joined \(self?.viewModel.getFormatterDate(with: user.createdOn) ?? "")"
         }
         .store(in: &subscriptions)
     }
-    
-    
     
     private func configureConstraints() {
         
@@ -105,31 +103,39 @@ class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate(profileTableViewConstraints)
         NSLayoutConstraint.activate(statusBarConstraints)
     }
+    
 }
+
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return viewModel.tweets.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier, for: indexPath) as? TweetTableViewCell else { return TweetTableViewCell() }
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier, for: indexPath) as? TweetTableViewCell else {
+            return UITableViewCell()
+        }
+        let tweet = viewModel.tweets[indexPath.row]
+        cell.configureTweet(with: tweet.author.displayName,
+                            username: tweet.author.username,
+                            tweetTextContent: tweet.tweetContent,
+                            avatarPath: tweet.author.avatarPath)
+
         return cell
     }
     
-    
-    // 스크롤할 때 상태창 설정 함수
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPosition = scrollView.contentOffset.y
         
-        if yPosition > 100 && isStausBarHidden {
-            isStausBarHidden = false
+        if yPosition > 150 && isStatusBarHidden {
+            isStatusBarHidden = false
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
                 self?.statusBar.layer.opacity = 1
             } completion: { _ in }
-        } else if yPosition < 0 && !isStausBarHidden {
-            isStausBarHidden = true
+            
+        } else if yPosition < 0 && !isStatusBarHidden {
+            isStatusBarHidden = true
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
                 self?.statusBar.layer.opacity = 0
             } completion: { _ in }

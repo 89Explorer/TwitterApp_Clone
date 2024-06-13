@@ -18,7 +18,7 @@ class MainTabBarViewController: UITabBarController {
         
         
         let homeVC = UINavigationController(rootViewController: HomeViewController())
-        let searchVC = UINavigationController(rootViewController: SearchViewController())
+        let searchVC = UINavigationController(rootViewController: SearchViewController(viewModel: SearchViewViewModel()))
         let notificationVC = UINavigationController(rootViewController: NotificationViewController())
         let directMessageVC = UINavigationController(rootViewController: DirectMessageViewController())
         

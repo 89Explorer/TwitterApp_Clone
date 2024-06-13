@@ -46,7 +46,7 @@ class DatabaseManager {
             .eraseToAnyPublisher()
     }
     
-
+    // firebase 에서는 특정 문자와 같은 걸로 찾을 수 있다.
     func collectionUsers(search query: String) -> AnyPublisher<[TwitterUser], Error> {
         db.collection(usersPath).whereField("username", isEqualTo: query)
             .getDocuments()

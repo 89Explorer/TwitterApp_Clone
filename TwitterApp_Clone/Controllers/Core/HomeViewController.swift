@@ -53,7 +53,9 @@ class HomeViewController: UIViewController {
     
     @objc private func didTapProfile() {
         print("didTapProfile() - called")
-        let profileVC = ProfileViewController()
+        
+        let viewModel = ProfileViewViewModel()
+        let profileVC = ProfileViewController(viewModel: viewModel)
         navigationController?.pushViewController(profileVC, animated: true)
     }
     

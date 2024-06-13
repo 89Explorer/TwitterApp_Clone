@@ -48,6 +48,9 @@
 		AD809A0E2C18FC7C00ACA16F /* TweetComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */; };
 		AD809A102C19027500ACA16F /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A0F2C19027500ACA16F /* Tweet.swift */; };
 		AD809A122C1902C800ACA16F /* TweetComposeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */; };
+		AD809A142C1B7D7A00ACA16F /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A132C1B7D7A00ACA16F /* SearchResultsViewController.swift */; };
+		AD809A162C1B816100ACA16F /* SearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A152C1B816000ACA16F /* SearchViewViewModel.swift */; };
+		AD809A182C1B872700ACA16F /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD809A172C1B872700ACA16F /* UserTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +86,9 @@
 		AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComposeViewController.swift; sourceTree = "<group>"; };
 		AD809A0F2C19027500ACA16F /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetComposeViewViewModel.swift; sourceTree = "<group>"; };
+		AD809A132C1B7D7A00ACA16F /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		AD809A152C1B816000ACA16F /* SearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModel.swift; sourceTree = "<group>"; };
+		AD809A172C1B872700ACA16F /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +164,7 @@
 			children = (
 				AD11F8722C00603F008A1794 /* TweetTableViewCell.swift */,
 				AD11F8792C022757008A1794 /* ProfileTableViewHeader.swift */,
+				AD809A172C1B872700ACA16F /* UserTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +187,7 @@
 				AD11F8772C022528008A1794 /* ProfileViewController.swift */,
 				AD809A002C12E9A500ACA16F /* ProfileDataFormViewController.swift */,
 				AD809A0D2C18FC7C00ACA16F /* TweetComposeViewController.swift */,
+				AD809A132C1B7D7A00ACA16F /* SearchResultsViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -202,6 +210,7 @@
 				AD809A022C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift */,
 				AD809A062C18DE4400ACA16F /* ProfileViewViewModel.swift */,
 				AD809A112C1902C800ACA16F /* TweetComposeViewViewModel.swift */,
+				AD809A152C1B816000ACA16F /* SearchViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 				AD11F8732C00603F008A1794 /* TweetTableViewCell.swift in Sources */,
 				AD8099F42C06E4C800ACA16F /* AuthManager.swift in Sources */,
 				AD11F86A2C005DFD008A1794 /* HomeViewController.swift in Sources */,
+				AD809A142C1B7D7A00ACA16F /* SearchResultsViewController.swift in Sources */,
 				AD809A032C12EAAA00ACA16F /* ProfileDataFormViewViewModel.swift in Sources */,
 				AD11F8562C005D84008A1794 /* MainTabBarViewController.swift in Sources */,
 				AD809A072C18DE4400ACA16F /* ProfileViewViewModel.swift in Sources */,
@@ -333,11 +343,13 @@
 				AD11F8902C058AC5008A1794 /* OnboardingViewController.swift in Sources */,
 				AD809A052C18216B00ACA16F /* StorageManager.swift in Sources */,
 				AD11F85C2C005D84008A1794 /* TwitterApp_Clone.xcdatamodeld in Sources */,
+				AD809A182C1B872700ACA16F /* UserTableViewCell.swift in Sources */,
 				AD11F8522C005D84008A1794 /* AppDelegate.swift in Sources */,
 				AD8099F82C10599400ACA16F /* LoginViewController.swift in Sources */,
 				AD8099EE2C0599E500ACA16F /* RegisterViewController.swift in Sources */,
 				AD809A012C12E9A500ACA16F /* ProfileDataFormViewController.swift in Sources */,
 				AD11F8542C005D84008A1794 /* SceneDelegate.swift in Sources */,
+				AD809A162C1B816100ACA16F /* SearchViewViewModel.swift in Sources */,
 				AD11F87A2C022757008A1794 /* ProfileTableViewHeader.swift in Sources */,
 				AD8099FF2C12E77900ACA16F /* HomeViewViewModel.swift in Sources */,
 			);
